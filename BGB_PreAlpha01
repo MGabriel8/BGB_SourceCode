@@ -1,0 +1,49 @@
+----------BuildGameBlock Pre-Alpha 0.1 Source Code-----------------
+
+
+
+Air Sprite:
+NULL
+
+
+
+
+Backdrops:
+
+When Start:
+switch backdrop to Backdrop1
+Wait.seconds = 2
+switch backdrop to Backdrop2
+
+When Stage clicked:
+broadcast= message1
+
+
+
+Block Sprite:
+When Start:
+hide.me
+set BlockReturn = 0
+
+When backdrop switches to Backdrop1
+hide.me
+
+When I receive Block2
+If BlockReturn = 1 Then
+   create clone of = myself
+
+When I start as a clone:
+show.me
+goto X: mouseX Y: mouseY
+set BlockReturn = 0
+stop = other scripts in sprite
+
+When D key is pressed Then
+hide.me
+
+When I receive message1
+If Block Return = 1 Then
+   broadcast Block2
+ ELSE
+create clone of = myself
+set BlockReturn = 1
